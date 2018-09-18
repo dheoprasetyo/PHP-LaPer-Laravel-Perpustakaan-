@@ -264,7 +264,7 @@
     <script src="{{ URL::asset('dist/js/demo.js') }}"></script>
     <!-- page script -->
     @include('sweetalert::alert')
-     @yield('js')
+     @section('js')
     @show
   </body>
 </html>

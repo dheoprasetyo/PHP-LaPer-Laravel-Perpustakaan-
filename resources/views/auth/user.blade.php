@@ -63,12 +63,27 @@
                           {{$data->created_at}}
                         </td>
                         <td>
-                          <a href="{{route('user.edit', $data->id)}}" class="btn btn-xs btn-success">Edit</a>
-                          <form class="" action="{{ route('user.destroy', $data->id) }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE')}}
-                            <button type="submit" class="btn btn-xs btn-danger  pull-right " onclick="return confirm('Anda yakin ingin menghapus data ini?')">Hapus</button>
-                        </form>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <a href="{{route('user.edit', $data->id)}}" class="btn btn-xs btn-success">Edit</a>
+                              <!-- <form class="" action="{{route('user.edit', $data->id)}}" method="POST">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                {{ method_field('put') }}
+                              <li><button>Edit</button></li>
+                                </form> -->
+                              <form class="" action="{{ route('user.destroy', $data->id) }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('delete') }}
+                              <button  onclick="return confirm('Anda yakin ingin menghapus data ini?')">Delete</button>
+                              </form>
+                            </ul>
+                          </div>
+
 
 
 
@@ -130,4 +145,4 @@
         });
       });
     </script>
-@endsection
+@stop

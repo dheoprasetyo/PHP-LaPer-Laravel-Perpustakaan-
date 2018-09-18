@@ -9,7 +9,7 @@ use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use Session;
 use Illuminate\Support\Facades\Redirect;
-use DB;
+use PDF;
 
 class AnggotaController extends Controller
 {
@@ -25,10 +25,10 @@ class AnggotaController extends Controller
 
     public function index()
     {
-        if(Auth::user()->level == 'user') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/');
-        }
+        // if(Auth::user()->level == 'user') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/');
+        // }
 
         $datas = Anggota::get();
         return view('anggota.index', compact('datas'));
@@ -41,10 +41,10 @@ class AnggotaController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->level == 'user') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/');
-        }
+        // if(Auth::user()->level == 'user') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/');
+        // }
 
         $users = User::get();
         // WhereNotExists(function($query) {
@@ -93,10 +93,10 @@ class AnggotaController extends Controller
     public function show($id)
     {
         
-        if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
-        }
+        // if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
+        //         Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //         return redirect()->to('/');
+        // }
 
         $data = Anggota::findOrFail($id);
 
@@ -111,10 +111,10 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {
-        if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
-        }
+        // if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
+        //         Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //         return redirect()->to('/');
+        // }
 
         $data = Anggota::findOrFail($id);
         $users = User::get();
@@ -147,5 +147,12 @@ class AnggotaController extends Controller
         Anggota::find($id)->delete();
         alert()->success('Berhasil.','Data telah dihapus!');
         return redirect()->route('anggota.index');
+    }
+
+    public function anggotaPdf()
+    {
+        $datas = Anggota::all();
+        $pdf = PDF::loadView('anggota.anggota_pdf', compact('datas'));
+        return $pdf->download('laporan_anggota_'.date('Y-m-d_H-i-s').'.pdf');
     }
 }

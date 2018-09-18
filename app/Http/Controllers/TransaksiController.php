@@ -28,13 +28,13 @@ class TransaksiController extends Controller
     
     public function index()
     {
-       if(Auth::user()->level == 'user')
-        {
-            $datas = Transaksi::where('anggota_id', Auth::user()->anggota->id)
-                                ->get();
-        } else {
+       // if(Auth::user()->level == 'user')
+       //  {
+       //      $datas = Transaksi::where('anggota_id', Auth::user()->anggota->id)
+       //                          ->get();
+       //  } else {
             $datas = Transaksi::get();
-        }
+        // }
         return view('transaksi.index', compact('datas'));
     }
 
@@ -109,10 +109,10 @@ class TransaksiController extends Controller
         $data = Transaksi::findOrFail($id);
 
 
-        if((Auth::user()->level == 'user') && (Auth::user()->anggota->id != $data->anggota_id)) {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
-        }
+        // if((Auth::user()->level == 'user') && (Auth::user()->anggota->id != $data->anggota_id)) {
+        //         Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //         return redirect()->to('/');
+        // }
 
 
         return view('transaksi.show', compact('data'));
@@ -128,10 +128,10 @@ class TransaksiController extends Controller
     {
         $data = Transaksi::findOrFail($id);
 
-        if((Auth::user()->level == 'user') && (Auth::user()->anggota->id != $data->anggota_id)) {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
-        }
+        // if((Auth::user()->level == 'user') && (Auth::user()->anggota->id != $data->anggota_id)) {
+        //         Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //         return redirect()->to('/');
+        // }
 
         return view('buku.edit', compact('data'));
     }

@@ -1,17 +1,46 @@
-
+@section('js')
+<!-- jQuery 2.1.4 -->
+   <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- page script -->
+    <script>
+      $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
+    </script>
+@stop
 @extends('layouts.app')
 
 @section('content')
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
+          <!-- <h1>
             Data Tables
             <small>advanced tables</small>
-          </h1>
+          </h1> -->
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Data tables</li>
+            <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Data Transaksi</li>
           </ol>
         </section>
         <div class="col-lg-2">
@@ -67,7 +96,6 @@
                           @endif
                         </td>
                         <td>
-                          @if(Auth::user()->level == 'admin')
                           <div class="btn-group">
                             <button type="button" class="btn btn-default">Action</button>
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -82,7 +110,8 @@
                                 {{ method_field('put') }}
                               <li><button onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button></li>
                                 </form>
-                            @endif
+                            @else
+                            
                               <form class="" action="{{  route('transaksi.destroy', $data->id) }}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
@@ -90,17 +119,7 @@
                               </form>
                             </ul>
                           </div>
-                          @else
-                          @if($data->status == 'pinjam')
-                          <form class="" action="{{  route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            {{ method_field('put') }}
-                            <li><button class="btn btn-xs btn-danger"  onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button></li>
-                        </form>
-                         @else
-
                           @endif
-                        @endif
 
 
 
@@ -130,34 +149,3 @@
         </section><!-- /.content -->
 
 @endsection
-@section('js')
-<!-- jQuery 2.1.4 -->
-   <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
-    <!-- DataTables -->
-    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="../../plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
-    <!-- page script -->
-    <script>
-      $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false
-        });
-      });
-    </script>
-@stop

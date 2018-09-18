@@ -16,5 +16,7 @@ Route::get('/', 'homeController@index');
 
 Route::resource('user', 'UserController');
 Route::resource('anggota', 'AnggotaController');
+Route::get('/anggota_pdf', 'AnggotaController@anggotaPdf');
 Route::resource('buku', 'BukuController');
+Route::get('/buku_pdf', 'BukuController@bukuPdf');
 Route::resource('transaksi', 'TransaksiController');

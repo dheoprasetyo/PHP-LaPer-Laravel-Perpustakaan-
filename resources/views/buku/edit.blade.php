@@ -1,3 +1,23 @@
+@section('js')
+
+<script type="text/javascript"> 
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showgambar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputgambar").change(function () {
+        readURL(this);
+    });
+</script>
+@stop
 @extends('layouts.app')
 
 @section('content')
@@ -107,7 +127,7 @@
                     </div>
                     <div class="box-body">
                     <div class="form-group{{ $errors->has('lokasi') ? ' has-error' : '' }}">
-                            <label for="lokasi">Jenis Kelamin</label>
+                            <label for="lokasi">Lokasi</label>
                             <select class="form-control" name="lokasi" required="">
                                <option value="rak1" {{$data->lokasi === "rak1" ? "selected" : ""}}>Rak 1</option>
                                 <option value="rak2" {{$data->lokasi === "rak2" ? "selected" : ""}}>Rak 2</option>
@@ -117,8 +137,8 @@
                         </div>
                     <div class="box-body">
                         <label for="email">Cover</label>
-                            <img class="product" width="200" height="200" @if($data->cover) src="{{ asset('images/buku/'.$data->cover) }}" @endif />
-                            <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
+                            <img class="product" id="showgambar" width="200" height="200" @if($data->cover) src="{{ asset('images/buku/'.$data->cover) }}" @endif />
+                            <input type="file" id="inputgambar" class="uploads form-control" style="margin-top: 20px;" name="cover">
                     </div>
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary" id="submit">Update</button>

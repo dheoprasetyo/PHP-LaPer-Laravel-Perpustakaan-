@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2018 at 03:09 PM
+-- Generation Time: Sep 17, 2018 at 02:54 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -77,8 +77,8 @@ CREATE TABLE `buku` (
 
 INSERT INTO `buku` (`id`, `judul`, `isbn`, `pengarang`, `penerbit`, `tahun_terbit`, `jumlah_buku`, `deskripsi`, `lokasi`, `cover`, `created_at`, `updated_at`) VALUES
 (1, 'Belajar Pemrograman Java', '9920392749', 'Abdul Kadir', 'PT. Restu Ibu', 2018, 19, 'Buku Pertama Belajar Pemrograman Java Utk Pemula', 'rak1', 'buku_java.jpg', '2018-09-05 21:05:40', '2018-09-11 07:48:10'),
-(2, 'Pemrograman Android', '9920395559', 'Muhammad Nurhidayat', 'PT. Restu Guru', 2018, 14, 'Jurus Rahasia Menguasai Pemrograman Android', 'rak2', 'jurus_rahasia.jpg', '2018-09-05 21:05:40', '2018-09-05 21:05:40'),
-(3, 'Android Application', '9920392000', 'Dina Aulia', 'PT. Restu Ayah', 2018, 5, 'Buku Pertama Belajar Pemrograman Java Utk Pemula', 'rak2', 'create_your.jpg', '2018-09-05 21:05:40', '2018-09-11 08:57:46');
+(2, 'Pemrograman Android', '9920395559', 'Muhammad Nurhidayat', 'PT. Restu Guru', 2018, 13, 'Jurus Rahasia Menguasai Pemrograman Android', 'rak2', 'jurus_rahasia.jpg', '2018-09-05 21:05:40', '2018-09-13 08:42:14'),
+(3, 'Android Application', '9920392000', 'Dina Aulia', 'PT. Restu Ayah', 2018, 5, 'Buku Pertama Belajar Pemrograman Java Utk Pemula', 'rak2', 'create_your.jpg', '2018-09-05 21:05:40', '2018-09-13 08:41:29');
 
 -- --------------------------------------------------------
 
@@ -140,7 +140,9 @@ CREATE TABLE `transaksi` (
 
 INSERT INTO `transaksi` (`id`, `kode_transaksi`, `anggota_id`, `buku_id`, `tgl_pinjam`, `tgl_kembali`, `status`, `ket`, `created_at`, `updated_at`) VALUES
 (1, 'PJ-3795299511', 4, 3, '2018-09-11', '2018-09-16', 'kembali', 'Yuhu', '2018-09-11 07:21:39', '2018-09-11 08:37:02'),
-(3, 'PJ-9928407990', 1, 3, '2018-09-11', '2018-09-16', 'kembali', NULL, '2018-09-11 08:44:12', '2018-09-11 08:57:46');
+(4, 'PJ-3302073404', 1, 2, '2018-09-13', '2018-09-18', 'kembali', NULL, '2018-09-13 03:18:49', '2018-09-13 03:18:57'),
+(5, 'PJ-9602296609', 2, 3, '2018-09-13', '2018-09-18', 'kembali', NULL, '2018-09-13 06:20:45', '2018-09-13 08:41:29'),
+(6, 'PJ-8206450503', 1, 2, '2018-09-13', '2018-09-18', 'pinjam', NULL, '2018-09-13 08:42:14', '2018-09-13 08:42:14');
 
 -- --------------------------------------------------------
 
@@ -166,9 +168,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `gambar`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Dheo - Admin', 'admin123', '123456@Dheo.com', '$2y$10$lDNCJVbU/5mdXCcnI.Z6Teb0lQ/3rT3vnt9DgYjMD3x1usey5HCSq', NULL, 'admin', 'YnzgvsghHFnODXs4o8Stvux1UOOa5zPGZSx7XGSsoUAsSqq9cdIaGDXIDyWu', '2018-09-05 21:05:40', '2018-09-05 21:05:40'),
-(2, 'Dheo - User', 'user123', '654321@Dheo.com', '$2y$10$nDEF4xudpUMHr8wdOaBxGuKuz/2sNI5d4Lg1F8Pqg5RZe12AcEWii', NULL, 'user', 'AgGq3GfegydhlBynRot4nLg9vYLgbju0fbjnBzt9D8QnJ8mZfabHmIXl3nVx', '2018-09-05 21:05:40', '2018-09-05 21:05:40'),
-(3, 'Dheo Prasetyo', 'dheo', 'dheoprasetyo.dp@gmail.com', '$2y$10$bUwt63IL2qkc7mb23NK1OeA993P7KQZaQAf8HdD1kduxP47XNL1Ay', '13352-2018-09-10-11-46-13.jpg', 'admin', '9UwHsIXRuKp19u7JmI1aeUUj0VO5AgdBnHbJtHSnrBiDRm1d906T9nrvtqGW', '2018-09-10 04:46:13', '2018-09-11 01:01:52');
+(1, 'Dheo - Admin', 'admin123', '123456@Dheo.com', '$2y$10$jhrj13qbqJPYew.slcexk.uNxsVB5KQf3E1S9QAYgAkVVff9Pvb5O', '97164-2018-09-13-14-47-24.gif', 'admin', 'YnzgvsghHFnODXs4o8Stvux1UOOa5zPGZSx7XGSsoUAsSqq9cdIaGDXIDyWu', '2018-09-05 21:05:40', '2018-09-13 07:47:24'),
+(2, 'Dheo - User', 'user123', '654321@Dheo.com', '$2y$10$nDEF4xudpUMHr8wdOaBxGuKuz/2sNI5d4Lg1F8Pqg5RZe12AcEWii', NULL, 'user', '0POjSeAUVWjzVdE68HWfYf8pXk4vA0NNmvxj1pENPtnTib6Z3r1RSf7EzwB7', '2018-09-05 21:05:40', '2018-09-05 21:05:40'),
+(3, 'Dheo Prasetyo', 'dheo', 'dheoprasetyo.dp@gmail.com', '$2y$10$bUwt63IL2qkc7mb23NK1OeA993P7KQZaQAf8HdD1kduxP47XNL1Ay', '13352-2018-09-10-11-46-13.jpg', 'admin', 'zhmac9lS8QJloPrehO4Eor84R07JlbpAsjIp7CcpYLPOUJiE8PfPtlv03bJx', '2018-09-10 04:46:13', '2018-09-11 01:01:52'),
+(6, 'y', 'y', 'y@y.com', '$2y$10$dWiOPhU5hWi.6MY.aa.tAOBcEmNYw4fQIETk0uHr2i1UaDCl3Xzdy', NULL, 'user', 'JWnsAYRwYtt5QU6BGKRzgn3ZleA7xX9rKiPpBaicia3XbPI32Kfqs7AHfuwn', '2018-09-13 07:55:37', '2018-09-13 07:55:37');
 
 --
 -- Indexes for dumped tables
@@ -240,13 +243,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

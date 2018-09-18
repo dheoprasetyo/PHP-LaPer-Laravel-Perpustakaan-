@@ -1,3 +1,6 @@
+@section('js')
+<script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+@stop
 @extends('layouts.app')
 
 @section('content')
@@ -111,4 +114,3 @@
           </div><!-- /.row -->
         </section><!-- /.content -->
                 @endsection
-<script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>

@@ -47,9 +47,9 @@
                       <tr>
                         <td class="py-1">
                            @if($data->user->gambar)
-                            <img src="{{url('images/user', $data->user->gambar)}}" alt="image" style="margin-right: 10px;" />
+                            <img src="{{url('images/user', $data->user->gambar)}}" width="50" height="50" alt="image" style="margin-right: 10px;" />
                           @else
-                            <img src="{{url('images/user/default.png')}}" alt="image" style="margin-right: 10px;" />
+                            <img src="{{url('images/user/default.png')}}" width="50" height="50" alt="image" style="margin-right: 10px;" />
                           @endif
                           {{$data->nama}}
                         </td>
@@ -97,6 +97,7 @@
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+              <a href="{{ url('anggota_pdf') }}" class="btn btn-success btn-rounded btn-fw"><i class="fa fa-download"></i> Export PDF</a>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->

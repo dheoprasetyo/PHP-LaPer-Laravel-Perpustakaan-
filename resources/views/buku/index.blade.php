@@ -15,8 +15,8 @@
           </ol>
         </section>
         <div class="col-lg-2">
-    <a href="{{ route('buku.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Buku</a>
-  </div>
+           <a href="{{ route('buku.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Buku</a>
+         </div>
     <div class="col-lg-12">
                   @if (Session::has('message'))
                   <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">{{ Session::get('message') }}</div>
@@ -72,12 +72,34 @@
                             {{$data->lokasi}}
                         </td>
                         <td>
-                        	<a href="{{route('buku.edit', $data->id)}}" class="btn btn-xs btn-success">Edit</a>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <a href="{{route('buku.edit', $data->id)}}" class="btn btn-xs btn-success">Edit</a>
+                              <!-- <form class="" action="{{route('user.edit', $data->id)}}" method="POST">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                {{ method_field('put') }}
+                              <li><button>Edit</button></li>
+                                </form> -->
+                              <form class="" action="{{ route('buku.destroy', $data->id) }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('delete') }}
+                              <button  onclick="return confirm('Anda yakin ingin menghapus data ini?')">Delete</button>
+                              </form>
+                            </ul>
+                          </div>
+
+
+                        	<!-- <a href="{{route('buku.edit', $data->id)}}" class="btn btn-xs btn-success">Edit</a>
                         	<form class="" action="{{ route('buku.destroy', $data->id) }}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE')}}
                             <button type="submit" class="btn btn-xs btn-danger  pull-right ">Hapus</button>
-                        </form>
+                        </form> -->
 
 
 
@@ -103,9 +125,11 @@
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+              <a href="{{ url('buku_pdf') }}" class="btn btn-success btn-rounded btn-fw"><i class="fa fa-download"></i> Export PDF</a>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+
 
 @endsection
 @section('js')

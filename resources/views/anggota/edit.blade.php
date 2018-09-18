@@ -99,7 +99,7 @@
                             <select class="form-control" name="user_id" required="">
                                 <option value="">(Cari User)</option>
                                 @foreach($users as $user)
-                                    <option value="{{$user->id}}" {{$data->user_id === $user->id ? "selected" : ""}}>{{$user->name}} >{{$user->name}}</option>
+                                    <option value="{{$user->id}}" {{$data->user_id === $user->id ? "selected" : ""}}>{{$user->name}}</option>
                                 @endforeach
                             </select>
                             </div>

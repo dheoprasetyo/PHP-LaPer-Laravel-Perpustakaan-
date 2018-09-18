@@ -1,3 +1,38 @@
+@section('js')
+
+<script type="text/javascript"> 
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showgambar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputgambar").change(function () {
+        readURL(this);
+    });
+
+
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('submit').disabled = false;
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('submit').disabled = true;
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+</script>
+@stop
+
 @extends('layouts.app')
 
 @section('content')
@@ -62,8 +97,8 @@
                     </div>
                     <div class="box-body">
                         <label for="gambar">Gambar</label>
-                            <img class="product" width="200" height="200" />
-                            <input type="file" class="uploads form-control" style="margin-top: 20px;" name="gambar">
+                            <img class="product" id="showgambar" width="200" height="200" />
+                            <input type="file" id="inputgambar" class="uploads form-control" style="margin-top: 20px;" name="gambar">
                     </div>
                     <div class="box-body">
                     <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
@@ -107,17 +142,3 @@
         </section><!-- /.content -->
                 @endsection
 <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-<script type="text/javascript">  
-var check = function() {
-  if (document.getElementById('password').value ==
-    document.getElementById('confirm_password').value) {
-    document.getElementById('submit').disabled = false;
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'matching';
-  } else {
-    document.getElementById('submit').disabled = true;
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'not matching';
-  }
-}
-</script>

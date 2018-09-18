@@ -9,8 +9,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
-use DB;
-use Excel;
+use PDF;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -28,10 +27,10 @@ class BukuController extends Controller
 
     public function index()
     {
-        if(Auth::user()->level == 'user') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/');
-        }
+        // if(Auth::user()->level == 'user') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/');
+        // }
 
         $datas = Buku::get();
         return view('buku.index', compact('datas'));
@@ -44,10 +43,10 @@ class BukuController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->level == 'user') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/');
-        }
+        // if(Auth::user()->level == 'user') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     return redirect()->to('/');
+        // }
         return view('buku.create');
     }
 
@@ -111,10 +110,10 @@ class BukuController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->level == 'user') {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
-        }
+        // if(Auth::user()->level == 'user') {
+        //         Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //         return redirect()->to('/');
+        // }
 
         $data = Buku::findOrFail($id);
         return view('buku.edit', compact('data'));
@@ -168,5 +167,11 @@ class BukuController extends Controller
         alert()->success('Berhasil.','Data telah dihapus!');
         return redirect()->route('buku.index');
 
+    }
+    public function bukuPdf()
+    {
+        $datas = Buku::all();
+        $pdf = PDF::loadView('buku.buku_pdf', compact('datas'));
+        return $pdf->download('laporan_buku_'.date('Y-m-d_H-i-s').'.pdf');
     }
 }
