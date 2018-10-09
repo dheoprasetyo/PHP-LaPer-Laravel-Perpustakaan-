@@ -77,7 +77,6 @@
                                 @endif
                             </div>
                     </div>
-                    @if(Auth::user()->level == 'admin')
                     <div class="box-body">
                     <div class="form-group{{ $errors->has('anggota_id') ? ' has-error' : '' }}">
                       <label for="anggota_id">Anggota</label>
@@ -95,20 +94,7 @@
                                 @endif
                             </div>
                     </div>
-                    @else
-                     <div class="box-body">
-                    <div class="form-group{{ $errors->has('anggota_id') ? ' has-error' : '' }}">
-                      <label for="anggota_id">Anggota</label>
-                       <input id="anggota_nama" type="text" class="form-control" readonly="" value="{{Auth::user()->anggota->nama}}" required>
-                       <input id="anggota_id" type="hidden" name="anggota_id" value="{{ Auth::user()->anggota->id }}" required readonly="">
-                                @if ($errors->has('anggota_id'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('anggota_id') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                    </div>
-                    @endif
+                    
                     <div class="box-body">
                     <div class="form-group{{ $errors->has('ket') ? ' has-error' : '' }}">
                       <label for="ket" >Keterangan</label>
@@ -132,8 +118,9 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
-          </div><!-- /.row -->
+          
         </section><!-- /.content -->
+                @endsection
 
 <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" >
   <div class="modal-dialog modal-lg" role="document" >
@@ -208,12 +195,7 @@
                             <tbody>
                                 @foreach($anggotas as $data)
                                 <tr class="pilih_anggota" data-anggota_id="<?php echo $data->id; ?>" data-anggota_nama="<?php echo $data->nama; ?>" >
-                                    <td class="py-1">
-                          @if($data->user->gambar)
-                            <img src="{{url('images/user', $data->user->gambar)}}" alt="image" width="50" height="50" />
-                          @else
-                            <img src="{{url('images/user/default.png')}}" alt="image" width="50" height="50" />
-                          @endif
+                                    <td>
 
                             {{$data->nama}}
                           </td>
@@ -243,8 +225,8 @@
         </div>
 
 
-                @endsection
-<script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+@section('js')
+<!-- <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script> -->
 
  <script type="text/javascript">
    $(document).on('click', '.pilih', function (e) {
@@ -265,3 +247,4 @@
 
         </script>
 
+@endsection

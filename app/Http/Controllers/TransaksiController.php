@@ -88,6 +88,11 @@ class TransaksiController extends Controller
                 'status' => 'pinjam'
             ]);
 
+        $transaksi->anggota->where('id', $transaksi->anggota_id)
+                        ->update([
+                            'jumlah' => ($transaksi->anggota->jumlah + 1),
+                            ]);
+
         $transaksi->buku->where('id', $transaksi->buku_id)
                         ->update([
                             'jumlah_buku' => ($transaksi->buku->jumlah_buku - 1),
@@ -114,7 +119,7 @@ class TransaksiController extends Controller
         //         return redirect()->to('/');
         // }
 
-
+        $created = new Carbon($data->tgl_kembali);
         return view('transaksi.show', compact('data'));
     }
 

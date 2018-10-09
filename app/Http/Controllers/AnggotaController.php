@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Anggota;
 use Auth;
-use App\User;
+// use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use Session;
 use Illuminate\Support\Facades\Redirect;
@@ -45,14 +45,15 @@ class AnggotaController extends Controller
         //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
         //     return redirect()->to('/');
         // }
-
-        $users = User::get();
+        $jumlah = 0;
+        // $users = User::get();
         // WhereNotExists(function($query) {
         //                 $query->select(DB::raw(1))
         //                 ->from('anggota')
         //                 ->whereRaw('anggota.user_id = users.id');
         //              })->get();
-        return view('anggota.create', compact('users'));
+        // return view('anggota.create', compact('jumlah','users'));
+        return view('anggota.create', compact('jumlah'));
 
     }
 
@@ -117,8 +118,9 @@ class AnggotaController extends Controller
         // }
 
         $data = Anggota::findOrFail($id);
-        $users = User::get();
-        return view('anggota.edit', compact('data', 'users'));
+        // $users = User::get();
+        // return view('anggota.edit', compact('data', 'users'));
+         return view('anggota.edit', compact('data'));
     }
 
     /**

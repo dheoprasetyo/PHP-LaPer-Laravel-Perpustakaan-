@@ -151,7 +151,5 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
-          </div><!-- /.row -->
         </section><!-- /.content -->
                 @endsection
-<script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>

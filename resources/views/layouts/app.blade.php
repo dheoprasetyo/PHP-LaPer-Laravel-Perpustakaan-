@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Laravel Perpustakaan</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}">
+    <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -20,9 +21,9 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="{{URL::asset('plugins/iCheck/flat/blue.css')}}">
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{URL::asset('../../plugins/datatables/dataTables.bootstrap.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('plugins/datatables/dataTables.bootstrap.css')}}">
     <!-- Morris chart -->
-    <link rel="stylesheet" href="{{URL::asset('plugins/morris/morris.css')}}">
+    <!-- <link rel="stylesheet" href="{{URL::asset('plugins/morris/morris.css')}}"> -->
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{URL::asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
     <!-- Date Picker -->
@@ -31,6 +32,8 @@
     <link rel="stylesheet" href="{{URL::asset('plugins/daterangepicker/daterangepicker-bs3.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{URL::asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+
+        <!-- <script src="{{ URL::asset('dist/js/pages/dashboard.js') }}"></script> -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -221,8 +224,8 @@
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
-    <!-- <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script> -->
-     <!-- <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+    
+     <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -236,8 +239,8 @@
     <script src="{{ URL::asset('../../plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('../../plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
     <!-- Morris.js charts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="{{ URL::asset('plugins/morris/morris.min.js') }}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
+<!--     <script src="{{ URL::asset('plugins/morris/morris.min.js') }}"></script> -->
     <!-- Sparkline -->
     <script src="{{ URL::asset('plugins/sparkline/jquery.sparkline.min.js') }}"></script>
     <!-- jvectormap -->
@@ -259,7 +262,7 @@
     <!-- AdminLTE App -->
     <script src="{{ URL::asset('dist/js/app.min.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ URL::asset('dist/js/pages/dashboard.js') }}"></script>
+
     <!-- AdminLTE for demo purposes -->
     <script src="{{ URL::asset('dist/js/demo.js') }}"></script>
     <!-- page script -->

@@ -128,28 +128,28 @@ class BukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->file('cover')) {
+        $update = Buku::findOrFail($id);
+        $update->judul = $request['judul'];
+        $update->isbn = $request['isbn'];
+        $update->pengarang = $request['pengarang'];
+        $update->penerbit = $request['penerbit'];
+        $update->tahun_terbit = $request['tahun_terbit'];
+        $update->jumlah_buku = $request['jumlah_buku'];
+        $update->deskripsi = $request['deskripsi'];
+        $update->lokasi = $request['lokasi'];
+
+        if($request->file('cover') == "") {
+            $update->cover = $update->cover;
+        }else {
             $file = $request->file('cover');
             $dt = Carbon::now();
             $acak  = $file->getClientOriginalExtension();
             $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
             $request->file('cover')->move("images/buku", $fileName);
-            $cover = $fileName;
-        }else {
-            $cover = NULL;
+            $update->cover = $fileName;
         }
 
-        Buku::find($id)->update([
-             'judul' => $request->get('judul'),
-                'isbn' => $request->get('isbn'),
-                'pengarang' => $request->get('pengarang'),
-                'penerbit' => $request->get('penerbit'),
-                'tahun_terbit' => $request->get('tahun_terbit'),
-                'jumlah_buku' => $request->get('jumlah_buku'),
-                'deskripsi' => $request->get('deskripsi'),
-                'lokasi' => $request->get('lokasi'),
-                'cover' => $cover
-                ]);
+        $update->update();
 
         alert()->success('Berhasil.','Data telah diubah!');
         return redirect()->route('buku.index');

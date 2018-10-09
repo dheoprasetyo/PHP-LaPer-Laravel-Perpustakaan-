@@ -1,51 +1,19 @@
-@section('js')
-<!-- jQuery 2.1.4 -->
-   <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
-    <!-- DataTables -->
-    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="../../plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
-    <!-- page script -->
-    <script>
-      $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false
-        });
-      });
-    </script>
-@stop
+
 @extends('layouts.app')
 
 @section('content')
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <!-- <h1>
+          <h1>
             Data Tables
             <small>advanced tables</small>
-          </h1> -->
+          </h1>
           <ol class="breadcrumb">
             <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Data Transaksi</li>
           </ol>
         </section>
-        <div class="col-lg-2">
-    <a href="{{ route('transaksi.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Transaksi</a>
-  </div>
+
     <div class="col-lg-12">
                   @if (Session::has('message'))
                   <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">{{ Session::get('message') }}</div>
@@ -58,7 +26,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Data Transaksi</h3>
+                  <h3 class="box-title">Data Transaksi  <a href="{{ route('transaksi.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i></a></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example1" class="table table-bordered table-striped">
@@ -70,6 +38,7 @@
                         <th>Tgl Pinjam</th>
                         <th>Tgl Kembali</th>
                         <th>Status</th>
+                        <th>Terlambat</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -95,6 +64,21 @@
                             <label class="badge badge-success">Kembali</label>
                           @endif
                         </td>
+                        <td> 
+                           @if($data->status == 'pinjam')
+                           @php
+                           $created = new Carbon($data->tgl_kembali);
+                            $now = Carbon::now();
+                            @endphp
+                            {{$difference = ($created->diff($now)->days < 0) ? 'tidak terlambat' : $created->diffForHumans($now)}}
+                           <!-- {{$cDate = Carbon::parse($data->tgl_kembali)->diffInDays()}} -->
+
+                          <!-- {{$DeferenceInDays = Carbon::parse(Carbon::now())->diffInDays($data->tgl_kembali)}} -->
+                          @else
+                        Tidak Terlambat 
+                          @endif
+
+                           </td>
                         <td>
                           <div class="btn-group">
                             <button type="button" class="btn btn-default">Action</button>
@@ -148,4 +132,11 @@
           </div><!-- /.row -->
         </section><!-- /.content -->
 
+@endsection
+@section('js')
+    <script>
+      $(function () {
+        $("#example1").DataTable();
+      });
+    </script>
 @endsection

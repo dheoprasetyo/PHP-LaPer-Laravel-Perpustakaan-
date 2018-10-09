@@ -31,14 +31,16 @@
               </a>
             </li>
 
-            <li class="treeview {{ setActive(['anggota*', 'buku*', 'user*']) }}">
+            <!-- <li class="treeview {{ setActive(['anggota*', 'buku*', 'user*']) }}"> -->
+            <li class="treeview {!! Request::is('anggota*', 'buku*', 'user*') ? 'active' : '' !!}">
               <a href="#"><i class="fa fa-pie-chart"></i><span>Master Data</span><i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu {{ setShow(['anggota*', 'buku*', 'user*']) }}">
-                <li class="{{ setActive(['user*']) }}"><a class="nav-link " href="{{route('user.index')}}"><i class="fa fa-child"></i> Data User</a>
+              <!-- <ul class="treeview-menu {{ setShow(['anggota*', 'buku*', 'user*']) }}"> -->
+              <ul class="treeview-menu">
+                <li class="{!! Request::is('user*') ? 'active' : '' !!}"><a class="nav-link " href="{{route('user.index')}}"><i class="fa fa-child"></i> Data User</a>
                 </li>
-                <li class="{{ setActive(['anggota*']) }}"><a href="{{route('anggota.index')}}"><i class="fa fa-user"></i> Data Anggota</a>
+                <li class="{!! Request::is('anggota*') ? 'active' : '' !!}"><a href="{{route('anggota.index')}}"><i class="fa fa-user"></i> Data Anggota</a>
                 </li>
-                <li class="{{ setActive(['buku*']) }}"><a class="nav-link " href="{{route('buku.index')}}"><i class=" fa fa-book"></i> Data Buku</a>
+                <li class="{!! Request::is('buku*') ? 'active' : '' !!}"><a class="nav-link " href="{{route('buku.index')}}"><i class=" fa fa-book"></i> Data Buku</a>
                 </li>
               </ul>
             </li>

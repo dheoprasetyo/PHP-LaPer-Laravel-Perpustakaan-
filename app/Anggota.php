@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Anggota extends Model
 {
     protected $table = 'anggota';
-    protected $fillable = ['user_id', 'npm', 'nama', 'tempat_lahir', 'tgl_lahir', 'jk', 'prodi'];
+    protected $fillable = ['npm', 'nama', 'tempat_lahir', 'tgl_lahir', 'jk', 'prodi','jumlah'];
 
 
     /**
      * Method One To One 
      */
-    public function user()
-    {
-    	return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    // 	return $this->belongsTo(User::class);
+    // }
 
     /**
      * Method One To Many 

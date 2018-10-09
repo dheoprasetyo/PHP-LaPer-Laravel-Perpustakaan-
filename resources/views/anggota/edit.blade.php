@@ -93,17 +93,6 @@
                             </select>
                             </div>
                         </div>
-                    <div class="box-body">
-                    <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }} ">
-                            <label for="user_id">User Login</label>
-                            <select class="form-control" name="user_id" required="">
-                                <option value="">(Cari User)</option>
-                                @foreach($users as $user)
-                                    <option value="{{$user->id}}" {{$data->user_id === $user->id ? "selected" : ""}}>{{$user->name}}</option>
-                                @endforeach
-                            </select>
-                            </div>
-                        </div>
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary" id="submit">Ubah</button>
                     <button type="reset" class="btn btn-danger">
@@ -115,7 +104,6 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
-          </div><!-- /.row -->
+    
         </section><!-- /.content -->
                 @endsection
-<script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>

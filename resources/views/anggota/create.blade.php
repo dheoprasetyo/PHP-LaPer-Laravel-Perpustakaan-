@@ -93,16 +93,16 @@
                             </div>
                         </div>
                     <div class="box-body">
-                    <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }} ">
-                            <label for="user_id">User Login</label>
-                            <select class="form-control" name="user_id" required="">
-                                <option value="">(Cari User)</option>
-                                @foreach($users as $user)
-                                    <option value="{{$user->id}}">{{$user->name}}</option>
-                                @endforeach
-                            </select>
-                            </div>
+                    <div class="form-group{{ $errors->has('jumlah') ? ' has-error' : '' }}">
+                      <!-- <label for="jumlah">Pernah Pinjam</label> -->
+                       <input id="jumlah" type="hidden" class="form-control" name="jumlah" value="{{($jumlah) }}" required readonly="">
+                                @if ($errors->has('jumlah'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('jumlah') }}</strong>
+                                    </span>
+                                @endif
                         </div>
+                    </div>
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                     <button type="reset" class="btn btn-danger">
@@ -114,7 +114,7 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
+</section>
+
                 @endsection
-<script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+<!-- <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script> -->

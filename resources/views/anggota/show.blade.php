@@ -1,6 +1,3 @@
-@section('js')
-<script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-@stop
 @extends('layouts.app')
 
 @section('content')
@@ -29,10 +26,7 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 
-                <div class="box-body">
-                    <div class="form-group">
-                        <img class="product" width="200" height="200" @if($data->user->gambar) src="{{ asset('images/user/'.$data->user->gambar) }}" @endif />
-                </div>
+               
 
                   <div class="box-body">
                     <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }}">
@@ -99,18 +93,11 @@
                             </select>
                             </div>
                         </div>
-                    <div class="box-body">
-                    <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }} ">
-                            <label for="user_id">User Login</label>
-                            <input id="" type="text" class="form-control" name="" value="{{ $data->user->username }}" readonly="">
-                            </div>
-                        </div>
                   <div class="box-footer">
                         <a href="{{route('anggota.index')}}" class="btn btn-light pull-right">Back</a>
                   </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
-          </div><!-- /.row -->
         </section><!-- /.content -->
                 @endsection

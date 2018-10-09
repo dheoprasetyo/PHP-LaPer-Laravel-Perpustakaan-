@@ -15,7 +15,7 @@
           </ol>
         </section>
         <div class="col-lg-2">
-    <a href="{{ route('anggota.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Anggota</a>
+    
   </div>
     <div class="col-lg-12">
                   @if (Session::has('message'))
@@ -29,28 +29,25 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Data Anggota</h3>
+                  <h3 class="box-title">Data Anggota <a href="{{ route('anggota.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i></a></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  <p> <a href="{{ url('anggota_pdf') }}" class="btn btn-success btn-rounded btn-fw"><i class="fa fa-download"></i> Export PDF</a></p>
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>Nama</th>
                         <th>Npm</th>
                         <th>Prodi</th>
-                        <th>Jenis KElamin</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Pernah Pinjam</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                     @foreach($datas as $data)
                       <tr>
-                        <td class="py-1">
-                           @if($data->user->gambar)
-                            <img src="{{url('images/user', $data->user->gambar)}}" width="50" height="50" alt="image" style="margin-right: 10px;" />
-                          @else
-                            <img src="{{url('images/user/default.png')}}" width="50" height="50" alt="image" style="margin-right: 10px;" />
-                          @endif
+                        <td >
                           {{$data->nama}}
                         </td>
                         <td><a href="{{route('anggota.show', $data->id)}}"> 
@@ -65,30 +62,40 @@
                         <td>
                         	{{$data->jk === "L" ? "Laki - Laki" : "Perempuan"}}
                         </td>
+                        <td>{{$data->jumlah}}</td>
                         <td>
-                        	<a href="{{route('anggota.edit', $data->id)}}" class="btn btn-xs btn-success">Edit</a>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <form class="" action="{{  route('anggota.edit', $data->id) }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('GET') }}
+                              <li><button class="dropdown-item" > Edit</button></li>
+                                </form>
+                              <!-- <a href="{{route('anggota.edit', $data->id)}}" class="btn btn-flat btn-default">Edit</a> -->
+                              <!-- <form class="" action="{{route('user.edit', $data->id)}}" method="POST">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                {{ method_field('put') }}
+                              <li><button>Edit</button></li>
+                                </form> -->
+                              <form class="" action="{{ route('anggota.destroy', $data->id) }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('delete') }}
+                              <button class="dropdown-item" onclick="return confirm('Anda yakin ingin menghapus data ini?')">Delete</button>
+                              </form>
+                            </ul>
+                          </div>
+
+                        	<!-- <a href="{{route('anggota.edit', $data->id)}}" class="btn btn-xs btn-success">Edit</a>
                         	<form class="" action="{{ route('anggota.destroy', $data->id) }}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE')}}
                             <button type="submit" class="btn btn-xs btn-danger  pull-right ">Hapus</button>
-                        </form>
-
-
-
-
-<!-- 
-                          <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Action
-                          </button>
-                          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
-                            <a class="dropdown-item" href="{{route('anggota.edit', $data->id)}}"> Edit </a>
-                            <form action="{{ route('anggota.destroy', $data->id) }}" class="pull-left"  method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('delete') }}
-                            <button class="dropdown-item" onclick="return confirm('Anda yakin ingin menghapus data ini?')"> Delete
-                            </button>
-                          </form> -->
-                           
+                        </form> -->
                          
                     	</td>
                       </tr>
@@ -97,7 +104,6 @@
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-              <a href="{{ url('anggota_pdf') }}" class="btn btn-success btn-rounded btn-fw"><i class="fa fa-download"></i> Export PDF</a>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
@@ -105,21 +111,9 @@
 @endsection
 @section('js')
 <!-- jQuery 2.1.4 -->
-   <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+<!--    <script src="{{ URL::asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script> -->
     <!-- Bootstrap 3.3.5 -->
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
-    <!-- DataTables -->
-    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="../../plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
-    <!-- page script -->
+
     <script>
       $(function () {
         $("#example1").DataTable();
